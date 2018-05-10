@@ -1,9 +1,13 @@
-
 class PostMachine:
 
 	def __init__(self, commands):
 		self.__available_commands = [
-			'->', '<-', 'V', 'E', '?', '!'
+			'->',  # move the caret to the right for 1 cell
+			'<-',  # move the caret to the left for 1 cell
+			'V',   # replace 0 into 1
+			'E',   # replace 1 into 0
+			'?',   # if-else statement ['?', i, j]: if cell is 0 than run command 'a', else - run command 'b'
+			'!'	   # terminates program
 		]
 		self.__validate_commands(commands)
 		self.__commands = commands
