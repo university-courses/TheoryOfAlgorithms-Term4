@@ -1,9 +1,9 @@
-from unittest import TestCase
+from unittest import TestCase as Example
 
 from Algorithms.HamiltonianCycle import HamiltonianCycle
 
 
-class TestHamiltonianCycle(TestCase):
+class TestHamiltonianCycle(Example):
 
 	h_cycle = HamiltonianCycle({
 		1: [4, 5],

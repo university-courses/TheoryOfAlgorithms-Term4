@@ -24,38 +24,42 @@ class PostMachine:
 		if not has_terminal_command:
 			raise KeyError('machine does not contain terminal command')
 
-	def __execute_command(self, command, string):
+	def __execute_command(self, commands, string):
 		new = list(string)
-		current_command = command[0]
-		next_command = command[1]
-		if current_command == '->':
-			if self.__caret_position < len(string):
-				self.__caret_position += 1
-		elif current_command == '<-':
-			if self.__caret_position >= 0:
-				self.__caret_position -= 1
-		elif current_command == 'V':
-			new[self.__caret_position] = '1'
-		elif current_command == 'E':
-			new[self.__caret_position] = '0'
-		elif current_command == '?':
-			if new[self.__caret_position] == '1':
-				next_command = command[2]
-		elif current_command == '!':
-			return string
-		else:
-			raise KeyError('command "{}" does not exist'.format(command[0]))
-		self.__operations_count += 1
-		return self.__execute_command(self.__commands[next_command - 1], ''.join(new))
+		next_command = 1
+		current_command_index = next_command
+		while True:
+			current_command = commands[current_command_index - 1][0]
+			next_command = commands[current_command_index - 1][1]
+			if current_command == '->':
+				if self.__caret_position < len(string):
+					self.__caret_position += 1
+			elif current_command == '<-':
+				if self.__caret_position >= 0:
+					self.__caret_position -= 1
+			elif current_command == 'V':
+				new[self.__caret_position] = '1'
+			elif current_command == 'E':
+				new[self.__caret_position] = '0'
+			elif current_command == '?':
+				if new[self.__caret_position] == '1':
+					next_command = commands[current_command_index - 1][2]
+			elif current_command == '!':
+				break
+			else:
+				raise KeyError('command "{}" does not exist'.format(commands[next_command - 1][0]))
+			self.__operations_count += 1
+			current_command_index = next_command
+		return ''.join(new)
 
-	def transform_line(self, input_line, start_pos=0, prefix=0):
-		if prefix < 0:
-			prefix = 0
+	def transform_line(self, input_line, start_pos=0, indent=0):
+		if indent < 0:
+			indent = 0
 		if start_pos < 0:
 			start_pos = 0
-		self.__caret_position = start_pos + prefix
-		string = ('0' * prefix) + input_line + ('0' * prefix)
-		return self.__execute_command(self.__commands[0], string)
+		self.__caret_position = start_pos + indent
+		string = ('0' * indent) + input_line + ('0' * indent)
+		return self.__execute_command(self.__commands, string)
 
 	@property
 	def operations_ran(self):

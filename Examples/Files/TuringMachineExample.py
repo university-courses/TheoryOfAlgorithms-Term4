@@ -1,9 +1,9 @@
-from unittest import TestCase
+from unittest import TestCase as Example
 
 from Algorithms.TuringMachine import TuringMachine
 
 
-class TestPostMachine(TestCase):
+class TestTuringMachine(Example):
 
 	pass
 

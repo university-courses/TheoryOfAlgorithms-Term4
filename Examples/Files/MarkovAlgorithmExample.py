@@ -1,11 +1,11 @@
-from unittest import TestCase
-
 from collections import OrderedDict
+
+from unittest import TestCase as Example
 
 from Algorithms.MarkovAlgorithm import MarkovAlgorithm
 
 
-class TestMarkovAlgorithm(TestCase):
+class TestMarkovAlgorithm(Example):
 
 	input_data = [
 		{

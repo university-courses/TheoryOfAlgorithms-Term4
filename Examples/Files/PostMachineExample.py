@@ -1,9 +1,9 @@
-from unittest import TestCase
+from unittest import TestCase as Example
 
 from Algorithms.PostMachine import PostMachine
 
 
-class TestPostMachine(TestCase):
+class TestPostMachine(Example):
 
 	command_list = [
 		['E', 2],  	   # 1

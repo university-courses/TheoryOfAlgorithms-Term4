@@ -1,12 +1,12 @@
 import math
 import random
 
-from unittest import TestCase
+from unittest import TestCase as Example
 
 from Algorithms.RecursiveFunctions import *
 
 
-class TestRecursiveFunctions(TestCase):
+class TestRecursiveFunctions(Example):
 
 	x = 17 % 7 + 3  # formula of finding x: (sequence_number mod 7) + 3
 
