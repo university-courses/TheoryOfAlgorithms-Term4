@@ -1,6 +1,6 @@
-from Algorithms.PostMachine import PostMachine
-
 from Examples import ExampleRunner
+
+from Algorithms.RAMMachine import *
 
 commands1 = [
 	['E', 2],		  # 1
@@ -205,4 +205,24 @@ commands5 = [
 ]
 
 if __name__ == '__main__':
-	ExampleRunner.run()
+	program = [
+		LOAD(1, '='),
+		STORE(1),
+		STORE(2),
+		READ(4),
+		LOAD(1, label='cycle'),
+		ADD(2),
+		STORE(3),
+		LOAD(2),
+		STORE(1),
+		LOAD(3),
+		STORE(2),
+		LOAD(2),
+		SUB(4),
+		JGTZ('greater'),
+		JUMP('cycle'),
+		WRITE(3, label='greater'),
+		HALT()
+	]
+	
+	RAMMachine(program).exec()
