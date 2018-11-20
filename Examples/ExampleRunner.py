@@ -13,10 +13,10 @@ from Examples.Files import (
 def run():
 	suite = ExampleSuit()
 
-#	PostMachineExample.run(suite)
-#	MarkovAlgorithmExample.run(suite)
-#	HamiltonianCycleExample.run(suite)
-#	RecursiveFunctionsExample.run(suite)
+	PostMachineExample.run(suite)
+	MarkovAlgorithmExample.run(suite)
+	HamiltonianCycleExample.run(suite)
+	RecursiveFunctionsExample.run(suite)
 	RAMMachineExample.run(suite)
 
 	ExampleTestRunner().run(suite)
