@@ -1,3 +1,0 @@
-class TuringMachine:
-
-	pass
